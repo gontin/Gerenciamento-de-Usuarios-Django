@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Atualizar Dados{% endblock %}
+
+{% block content %}
+
+<h2><b>Atualizar Informações Socioeconômicas</b></h2>
+<form method="post" action="{% url 'attdata' %}" data-redirect="{% url 'inicio' %}" class="attdadosform">
+    {% csrf_token %}
+
+
+    <label for="renda_familiar"><b>Renda Familiar (R$):</b></label>
+    <input type="number" name="renda_familiar" id="renda_familiar" 
+            value="{{ data.renda_familiar|default:'0' }}" step="0.01" required>
+    <small class="form-text">Soma da renda de todos os membros da família</small>
+
+
+    <label for="num_membros"><b>Número de Membros:</b></label>
+    <input type="number" name="num_membros" id="num_membros" 
+            value="{{ data.num_membros|default:'1' }}" min="1" required>
+
+
+
+
+    <label for="despesas_mensais"><b>Despesas Mensais (R$):</b></label>
+    <input type="number" name="despesas_mensais" id="despesas_mensais" 
+            value="{{ data.despesas_mensais|default:'0' }}" step="0.01" required>
+
+
+
+
+    <label for="tipo_moradia"><b>Tipo de Moradia:</b></label>
+    <select name="tipo_moradia" id="tipo_moradia" class="form-select" required>
+        <option value="ALUGADA" {% if data.tipo_moradia == 'ALUGADA' %}selected{% endif %}>Alugada</option>
+        <option value="PROPRIA" {% if data.tipo_moradia == 'PROPRIA' %}selected{% endif %}>Própria</option>
+        <option value="CEDIDA" {% if data.tipo_moradia == 'CEDIDA' %}selected{% endif %}>Cedida</option>
+        <option value="INVADIDA" {% if data.tipo_moradia == 'INVADIDA' %}selected{% endif %}>Invadida</option>
+    </select>
+
+
+
+    <label for="situacao_emprego"><b>Situação de Emprego:</b></label>
+    <select name="situacao_emprego" id="situacao_emprego" class="form-select" required>
+        <option value="EMPREGADO" {% if data.situacao_emprego == 'EMPREGADO' %}selected{% endif %}>Empregado</option>
+        <option value="DESEMPREGADO" {% if data.situacao_emprego == 'DESEMPREGADO' %}selected{% endif %}>Desempregado</option>
+        <option value="AUTONOMO" {% if data.situacao_emprego == 'AUTONOMO' %}selected{% endif %}>Autônomo</option>
+        <option value="APOSENTADO" {% if data.situacao_emprego == 'APOSENTADO' %}selected{% endif %}>Aposentado</option>
+    </select>
+
+
+
+        <label for="nivel_escolaridade"><b>Nível de Escolaridade:</b></label>
+        <select name="nivel_escolaridade" id="nivel_escolaridade" class="form-select" required>
+            <option value="FUND" {% if data.nivel_escolaridade == 'FUND' %}selected{% endif %}>Ensino Fundamental</option>
+            <option value="MED" {% if data.nivel_escolaridade == 'MED' %}selected{% endif %}>Ensino Médio</option>
+            <option value="SUP" {% if data.nivel_escolaridade == 'SUP' %}selected{% endif %}>Ensino Superior</option>
+            <option value="POS" {% if data.nivel_escolaridade == 'POS' %}selected{% endif %}>Pós-Graduação</option>
+            <option value="OUT" {% if data.nivel_escolaridade == 'OUT' %}selected{% endif %}>Outro</option>
+        </select>
+
+
+    <button type="submit" class="botao">Salvar Informações</button>
+</form>
+
+{% endblock %}

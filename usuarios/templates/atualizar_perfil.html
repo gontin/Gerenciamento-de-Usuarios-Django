@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+{% block title %}Atualizar Perfil{% endblock %} 
+
+{% block content%}
+<div>
+    <h2><b>Atualizar Perfil</b></h2>
+    <div class="conteudo">
+    <form method="post" action="{% url 'attperfil' %}" data-redirect="{% url 'inicio' %}">
+        {% csrf_token %}
+
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" value="{{ perfil.nome|default:'' }}" placeholder="Nome" required>
+        </div>
+
+        <div>
+            <label for="endereco">Endereço:</label>
+            <input type="text" name="endereco" id="endereco" value="{{ perfil.endereco|default:'' }}" placeholder="Endereço" required>
+        </div>
+
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" value="{{ perfil.email|default:'' }}" placeholder="Email" required>
+        </div>
+
+        <div>
+            <label for="genero">Gênero:</label>
+            <select name="genero" id="genero" required>
+                <option value="M" {% if perfil.genero == 'M' %}selected{% endif %}>Masculino</option>
+                <option value="F" {% if perfil.genero == 'F' %}selected{% endif %}>Feminino</option>
+                <option value="O" {% if perfil.genero == 'O' %}selected{% endif %}>Outro</option>
+            </select>
+        </div>
+
+        <button type="submit" class="botao">Salvar Perfil</button>
+    </form>
+    </div>
+</div>
+{% endblock %}

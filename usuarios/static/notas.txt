@@ -1,0 +1,7 @@
+exemplo para uso
+{% extends 'base.html' %} 
+{% block title %}titulo{% endblock %} 
+
+{% block content%}
+
+{% endblock %}

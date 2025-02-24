@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% block title %}Início{% endblock %} 
+
+{% block content%}
+<main>
+<h2>Bem-vindo(a) {{ user.username }}</h2>
+<h3>Seus dados: </h3>
+<div class="banana">
+    <div class="perfilzin">
+        <h3>Perfil</h3>
+        <p><strong>Nome:</strong> {{ user.perfil.nome }}</p>
+        <p><strong>Email:</strong> {{ user.perfil.email }}</p>
+        <p><strong>Gênero:</strong> {{ user.perfil.get_genero_display }}</p>
+        <p><strong>Endereço:</strong> {{ user.perfil.endereco }}</p>
+    </div>
+    <div class="infozin">
+        <h3>Informações Socioeconômicas</h3>
+        <p><strong>Renda Familiar:</strong> R$ {{ user.Data.renda_familiar }}</p>
+        <p><strong>Número de Membros:</strong> {{ user.Data.num_membros }}</p>
+        <p><strong>Despesas Mensais:</strong> R$ {{ user.Data.despesas_mensais }}</p>
+        <p><strong>Situação de Emprego:</strong> {{ user.Data.get_situacao_emprego_display }}</p>
+        <p><strong>Tipo de Moradia:</strong> {{ user.Data.get_tipo_moradia_display }}</p>
+        <p><strong>Nível de Escolaridade:</strong> {{ user.Data.get_nivel_escolaridade_display }}</p>
+    </div>
+    <div class="links">
+        <a href="{% url 'attperfil' %}" class="btn">Atualizar Perfil</a>
+        <a href="{% url 'attdata' %}" class="btn">Atualizar Informações</a>
+        {% if user.perfil.nome and user.Data.renda_familiar %}
+        <a href="{% url 'gerar_pdf' %}" class="btn">Baixar PDF</a>
+        {% else %}
+        <small>*Complete seu perfil e dados antes de baixar o PDF.</small>
+        {% endif %}
+    </div>
+</div>
+</main>
+{% endblock %}
