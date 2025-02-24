@@ -64,3 +64,5 @@ Este projeto foi desenvolvido para facilitar o cadastro de pessoas carentes para
 
 ## 🏗️ Contribuição
 Contribuições são bem-vindas! Sinta-se à vontade para abrir **issues** e enviar **pull requests**.
+
+- `readme feito por ia caso tenha falhas desculpinha(vou corrigir assim que possivel)`
